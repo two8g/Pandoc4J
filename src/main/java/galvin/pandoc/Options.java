@@ -1,16 +1,18 @@
 package galvin.pandoc;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Wither;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
-import galvin.KeyValue;
-import lombok.AllArgsConstructor;
-import lombok.experimental.Wither;
+
+//import galvin.KeyValue;
 
 /**
  * A wrapper for all of Pandoc's options. For an in-depth exaplnation of what
@@ -19,33 +21,33 @@ import lombok.experimental.Wither;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class Options
 {
-    /**
+	/**
      * This constructor is necessary for the @Wither annotation to work
      * correctly.
-     * @param executable - the path to the Pandoc exe. 
+     * @param executable - the path to the Pandoc exe.
      * @param sources - the input files
      * @param output the file to write the resulting document to. Can be null.
      */
-    public Options( File executable, 
+    public Options( File executable,
                     List<File> sources,
                     File output ){
         this.executable = executable;
         this.sources = sources;
         this.output = output;
     }
-    
+
     /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// ///
-    
+
     @Wither private File executable;
     @Wither private List<File> sources = new ArrayList();
     @Wither private File output;
-    
+
     /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// ///
-    
+
     private Format from;
     private Format to;
     private Boolean standalone;
-    
+
     private Boolean strict;
     private Boolean parseRaw;
     private Boolean smart;
@@ -73,21 +75,21 @@ public class Options
     private Boolean dumpArgs;
     private Boolean ignoreArgs;
     private Boolean listings;
-    
+
     private Integer baseHeaderLevel;
     private Integer tabStop;
     private Integer columns;
     private Integer numberOffset;
     private Integer slideLevel;
     private Integer epubChapterLevel;
-    
+
     private String indentedCodeClasses;
     private String highlightStyle;
     private String defaultImgExtension;
     private String idPrefix;
     private String titlePrefix;
     private String latexEngineOpt;
-    
+
     private File dataDir;
     private File filterExecutable;
     private File template;
@@ -105,61 +107,61 @@ public class Options
     private File csl;
     private File citationAbbreviations;
     private File extractMedia;
-    
+
     private URL css;
     private URL katexStylesheet;
-    
+
     private List<KeyValue<String, String>> metadata = new ArrayList();
     private List<KeyValue<String, String>> variables = new ArrayList();
-    
+
     private EmailObfuscation emailObfuscation;
     private TrackChanges trackChanges;
-    
+
     private Boolean latextmathml;
     private URL latextmathmlURL;
-    
+
     private Boolean asciitmathml;
     private URL asciitmathmlURL;
-    
+
     private Boolean mathml;
     private URL mathmlURL;
-    
+
     private Boolean mimetex;
     private URL mimetexURL;
-    
+
     private Boolean jsmath;
     private URL jsmathURL;
-    
+
     private Boolean mathjax;
     private URL mathjaxURL;
-    
+
     private Boolean webtex;
     private URL webtexURL;
-    
+
     private Boolean katex;
     private URL katexURL;
-    
+
     public void verify() {
         if( executable == null ) {
             throw new IllegalArgumentException( "Pandoc executable must be specified" );
         }
-        
+
         if( !executable.exists() ) {
             throw new IllegalArgumentException( "Pandoc executable does not exist at specified location: " + executable.getAbsolutePath() );
         }
-        
+
         if( !executable.canExecute()) {
             throw new IllegalArgumentException( "Pandoc executable cannot be executed by current user" );
         }
     }
-    
+
     public String[] getPandocCommand() {
         List<String> commandSegments = new ArrayList();
         commandSegments.add( executable.getAbsolutePath() );
-        
+
         commandSegments.add( getFrom( from )  );
         commandSegments.add( getTo( to )  );
-        
+
         commandSegments.add( getFile( output, "--output" )  );
         commandSegments.add( getBoolean( standalone, "-s" )  );
         commandSegments.add( getBoolean( strict, "--strict" )  );
@@ -187,21 +189,21 @@ public class Options
         commandSegments.add( getBoolean( dumpArgs, "--dump-args" )  );
         commandSegments.add( getBoolean( ignoreArgs, "--ignore-args" )  );
         commandSegments.add( getBoolean( listings, "--listings" )  );
-        
+
         commandSegments.add( getInteger( baseHeaderLevel, "--base-header-level" )  );
         commandSegments.add( getInteger( tabStop, "--tab-stop" )  );
         commandSegments.add( getInteger( columns, "--columns" )  );
         commandSegments.add( getInteger( numberOffset, "--number-offset" )  );
         commandSegments.add( getInteger( slideLevel, "--slide-level" )  );
         commandSegments.add( getInteger( epubChapterLevel, "--epub-chapter-level" )  );
-        
+
         commandSegments.add( getString( indentedCodeClasses, "--indented-code-classes" )  );
         commandSegments.add( getString( highlightStyle, "--highlight-style" )  );
         commandSegments.add( getString( defaultImgExtension, "--default-image-extension" )  );
         commandSegments.add( getString( idPrefix, "--id-prefix" )  );
         commandSegments.add( getString( titlePrefix, "--title-prefix" )  );
         commandSegments.add( getString( latexEngineOpt, "--latex-enging-opt" )  );
-        
+
         commandSegments.add( getFile( dataDir, "--data-dir" )  );
         commandSegments.add( getFile( filterExecutable, "--filter" )  );
         commandSegments.add( getFile( template, "--template" )  );
@@ -219,25 +221,25 @@ public class Options
         commandSegments.add( getFile( csl, "--csl" )  );
         commandSegments.add( getFile( citationAbbreviations, "--citation-abbreviations" )  );
         commandSegments.add( getFile( extractMedia, "--extract-media" )  );
-        
+
         commandSegments.add( getURL( css, "--css" )  );
         commandSegments.add( getURL( katexStylesheet, "--katex-stylesheet" )  );
-        
+
         if( metadata != null ){
             for( KeyValue keyValue : metadata ) {
                 commandSegments.add( getMetadata( keyValue )  );
             }
         }
-        
+
         if( variables != null ){
             for( KeyValue keyValue : variables ) {
                 commandSegments.add( getVariable( keyValue )  );
             }
         }
-        
+
         commandSegments.add( getEmailObfuscation( emailObfuscation )  );
         commandSegments.add( getTrackChanges( trackChanges )  );
-        
+
         commandSegments.add( getBooleanUrl( latextmathml, latextmathmlURL, "--latexmathml" )  );
         commandSegments.add( getBooleanUrl( asciitmathml, asciitmathmlURL, "--asciitmathml" )  );
         commandSegments.add( getBooleanUrl( mathml, mathmlURL, "--mathml" )  );
@@ -246,91 +248,91 @@ public class Options
         commandSegments.add( getBooleanUrl( mathjax, mathjaxURL, "--mathjax" )  );
         commandSegments.add( getBooleanUrl( webtex, webtexURL, "--webtex" )  );
         commandSegments.add( getBooleanUrl( katex, katexURL, "--katex" )  );
-        
+
         for( File file : sources ){
             commandSegments.add( file.getAbsolutePath() );
         }
-        
+
         Iterator<String> iter = commandSegments.iterator();
         while( iter.hasNext() ) {
             if( StringUtils.isBlank( iter.next() ) ){
                 iter.remove();
             }
         }
-        
+
         String[] result = new String[ commandSegments.size() ];
         commandSegments.toArray( result );
         return result;
     }
-    
+
     private String getBoolean( Boolean flag, String name ){
         if( flag != null && flag ) {
             return name;
         }
         return "";
     }
-    
+
     private String getFrom( Format format ){
         if( format != null ) {
             return "--from=" + format.from();
         }
         return "";
     }
-    
+
     private String getTo( Format format ){
         if( format != null ) {
             return "--to=" + format.to();
         }
         return "";
     }
-    
+
     private String getInteger( Integer value, String name ){
         if( value != null ) {
             return name + "=" + value.toString();
         }
         return "";
     }
-    
+
     private String getString( String value , String name) {
         if( !StringUtils.isBlank( value ) ){
             return name + "=" + value;
         }
         return "";
     }
-    
+
     private String getFile( File file, String name ){
         if( file != null ){
             return name + "=" + file.getAbsolutePath();
         }
         return "";
     }
-    
+
     private String getURL( URL url, String name ){
         if( url != null ){
             return name + "=" + url.toString();
         }
         return "";
     }
-    
+
     private String getEmailObfuscation( EmailObfuscation email ){
         if( email != null ){
             return "--email-obfuscation=" + email.name();
         }
         return "";
     }
-    
+
     private String getTrackChanges( TrackChanges trackChanges ) {
         if( trackChanges != null ){
             return "--track-changes=" + trackChanges.name();
         }
         return "";
     }
-    
+
     private String getMetadata( KeyValue<String, String> keyValue ) {
         if( keyValue != null ){
             String key = keyValue.getKey();
             String value = keyValue.getValue();
-            
+
             if( !StringUtils.isBlank( key ) ){
                 String result = "--metadata=" + key;
                 if( !StringUtils.isBlank( value ) ) {
@@ -341,12 +343,12 @@ public class Options
         }
         return "";
     }
-    
+
     private String getVariable( KeyValue<String, String> keyValue ) {
         if( keyValue != null ){
             String key = keyValue.getKey();
             String value = keyValue.getValue();
-            
+
             if( !StringUtils.isBlank( key ) ){
                 String result = "--variable=" + key;
                 if( !StringUtils.isBlank( value ) ) {
@@ -357,7 +359,7 @@ public class Options
         }
         return "";
     }
-    
+
     private String getBooleanUrl( Boolean flag, URL url, String name ){
         if( flag != null && flag ){
             String result = name;
