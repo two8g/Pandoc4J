@@ -18,6 +18,19 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
 
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://search-test.daoxuehao.com:28081/nexus/content/repositories/thirdparty/</url>
+		</repository>
+		<!--		<snapshotRepository>
+					<id>nexus-snapshots</id>
+					<name>Nexus Snapshot Repository</name>
+					<url>http://search-test.daoxuehao.com:28081/nexus/content/repositories/snapshots/</url>
+				</snapshotRepository>-->
+	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
