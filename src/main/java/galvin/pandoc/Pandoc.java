@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +87,23 @@ public class Pandoc {
 		String[] command = options.getPandocCommand();
 		Process p = Runtime.getRuntime().exec(command);
 
-        //StreamSucker errorStream = new StreamSucker( p.getErrorStream(), "pandoc error" );
+        try {
+            //读取标准输出流
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+            //读取标准错误流
+            BufferedReader brError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            String err;
+            while ((err = brError.readLine()) != null) {
+                System.err.println(err);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		//StreamSucker errorStream = new StreamSucker( p.getErrorStream(), "pandoc error" );
         //errorStream.start();
 
 		if (fromString) {

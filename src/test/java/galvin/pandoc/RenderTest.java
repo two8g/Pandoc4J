@@ -14,6 +14,8 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -178,6 +180,11 @@ public class RenderTest {
         List<Extension> extensionList = new ArrayList<>();
         extensionList.add(Extension.tex_math_dollars);
         options.setExtensions(extensionList);
+        try {
+            options.setCss(new URL("/home/two8g/Develop/IdeaProjects/Pandoc4J/src/test/resources/template.css"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         //设置docx模板
         options.setReferenceDOCX(template);
 
@@ -215,7 +222,8 @@ public class RenderTest {
     @Test
     public void testHtml2PDF() {
         File source = new File("target/test-classes/80690081.html");
-        File output = new File("target/test-classes/80690081.html5");
+        File output = new File("target/test-classes/80690081.pdf");
+        File template = new File("target/test-classes/pm-template.latex");
 
         Options options = new Options();
         options.setFrom(Format.html);
@@ -223,6 +231,64 @@ public class RenderTest {
         List<Extension> extensionList = new ArrayList<>();
         extensionList.add(Extension.tex_math_dollars);
         options.setExtensions(extensionList);
+        options.setLatexEngine(new File("/usr/bin/xelatex"));
+
+        List<KeyValue<String, String>> values = new ArrayList<>();
+        values.add(new KeyValue<>("mainfont", "SimSun"));
+        values.add(new KeyValue<>("papersize", "A4"));
+        values.add(new KeyValue<>("fontsize", "10.5pt"));
+        //values.add(new KeyValue<>("mathfont", "Times New Roman"));
+        values.add(new KeyValue<>("margin-left", "31.75mm"));
+        values.add(new KeyValue<>("margin-right", "31.75mm"));
+        values.add(new KeyValue<>("margin-top", "25.4mm"));
+        values.add(new KeyValue<>("margin-bottom", "25.4mm"));
+        values.add(new KeyValue<>("linestretch", "1.5"));
+        options.setVariables(values);
+        //options.setTemplate(template);
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        try {
+            pandoc.render(options, source, output);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testHtml2LaTeX() {
+        File source = new File("target/test-classes/80690081.html");
+        File output = new File("target/test-classes/80690081.tex");
+
+        Options options = new Options();
+        options.setFrom(Format.html);
+        options.setTo(Format.latex);
+        List<Extension> extensionList = new ArrayList<>();
+        extensionList.add(Extension.tex_math_dollars);
+        options.setExtensions(extensionList);
+
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        try {
+            pandoc.render(options, source, output);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testHtml2md() {
+        File source = new File("target/test-classes/80690081.html");
+        File output = new File("target/test-classes/80690081.md");
+
+        Options options = new Options();
+        options.setFrom(Format.html);
+        options.setTo(Format.markdown);
+        List<Extension> extensionList = new ArrayList<>();
+        extensionList.add(Extension.tex_math_dollars);
+        options.setExtensions(extensionList);
+        try {
+            options.setCss(new URL("https://gist.github.com/killercup/5917178#file-pandoc-css"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
         try {
@@ -240,6 +306,26 @@ public class RenderTest {
 
         Options options = new Options();
         options.setFrom(Format.markdown);
+        options.setTo(Format.docx);
+        //设置docx模板
+        options.setReferenceDOCX(template);
+
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        try {
+            pandoc.render(options, source, output);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void tex2docx() {
+        File source = new File("target/test-classes/80690081.tex");
+        File template = new File("target/test-classes/template.docx");
+        File output = new File("target/test-classes/80690081-tex.docx");
+
+        Options options = new Options();
+        options.setFrom(Format.latex);
         options.setTo(Format.docx);
         //设置docx模板
         options.setReferenceDOCX(template);
