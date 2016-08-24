@@ -14,6 +14,8 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -138,26 +140,103 @@ public class RenderTest {
 
         Pandoc pandoc = new Pandoc(new File("/usr/local/bin/pandoc"));
         String actualHtml = pandoc.render(options, text.toString());
+        System.out.println(actualHtml);
     }
 
     @Test
-    public void testFile2Docx() throws IOException {
+    public void testFile2Docx() {
         File source = new File("target/test-classes/test.txt");
         File output = new File("target/test-classes/file-to-docx.docx");
 
         Options options = new Options();
-        options.setFrom(Format.markdown);
+        options.setSmart(Boolean.TRUE);
+        options.setFrom(Format.html);
         options.setTo(Format.docx);
 
+        List<Extension> extensionList = new ArrayList<>();
+        extensionList.add(Extension.tex_math_dollars);
+        options.setExtensions(extensionList);
+
         Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
-        pandoc.render(options, source, output);
+        try {
+            pandoc.render(options, source, output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    public void testFile2DocxWithTemplate() throws IOException {
+    public void testFile2DocxWithTemplate() {
         File source = new File("target/test-classes/test.txt");
         File template = new File("target/test-classes/template.docx");
         File output = new File("target/test-classes/file-to-docx-template.docx");
+
+        Options options = new Options();
+        options.setSmart(Boolean.TRUE);
+        options.setFrom(Format.html);
+        options.setTo(Format.docx);
+        List<Extension> extensionList = new ArrayList<>();
+        extensionList.add(Extension.tex_math_dollars);
+        options.setExtensions(extensionList);
+        //设置docx模板
+        options.setReferenceDOCX(template);
+
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        try {
+            pandoc.render(options, source, output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testFile2DocxWithTemplate80690081() {
+        File source = new File("target/test-classes/80690081.html");
+        File template = new File("target/test-classes/template.docx");
+        File output = new File("target/test-classes/80690081.docx");
+
+        Options options = new Options();
+        options.setFrom(Format.html);
+        options.setTo(Format.docx);
+        List<Extension> extensionList = new ArrayList<>();
+        extensionList.add(Extension.tex_math_dollars);
+        options.setExtensions(extensionList);
+        //设置docx模板
+        options.setReferenceDOCX(template);
+
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        try {
+            pandoc.render(options, source, output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testHtml2PDF() {
+        File source = new File("target/test-classes/80690081.html");
+        File output = new File("target/test-classes/80690081.html5");
+
+        Options options = new Options();
+        options.setFrom(Format.html);
+        options.setTo(Format.pdf);
+        List<Extension> extensionList = new ArrayList<>();
+        extensionList.add(Extension.tex_math_dollars);
+        options.setExtensions(extensionList);
+
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        try {
+            pandoc.render(options, source, output);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void md2docx() {
+        File source = new File("target/test-classes/80690081.md");
+        File template = new File("target/test-classes/template.docx");
+        File output = new File("target/test-classes/80690081-md.docx");
 
         Options options = new Options();
         options.setFrom(Format.markdown);
@@ -166,6 +245,10 @@ public class RenderTest {
         options.setReferenceDOCX(template);
 
         Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
-        pandoc.render(options, source, output);
+        try {
+            pandoc.render(options, source, output);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
