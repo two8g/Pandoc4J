@@ -6,7 +6,11 @@
 package galvin.pandoc;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,135 +21,151 @@ import static org.junit.Assert.assertEquals;
  * @author galvint
  */
 public class RenderTest {
-	private static final String HEADING = "<h1>Lorem ipsum dolor sit amet</h1>\n\n";
-	private static final String GREEKING = "Lorem ipsum dolor sit amet, consectetur "
-			+ "adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore "
-			+ "magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco "
-			+ "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor "
-			+ "in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla "
-			+ "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa "
-			+ "qui officia deserunt mollit anim id est laborum.\n\n";
+    private static final String HEADING = "<h1>Lorem ipsum dolor sit amet</h1>\n\n";
+    private static final String GREEKING = "Lorem ipsum dolor sit amet, consectetur "
+            + "adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore "
+            + "magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco "
+            + "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor "
+            + "in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla "
+            + "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa "
+            + "qui officia deserunt mollit anim id est laborum.\n\n";
 
-	public RenderTest() {
-	}
+    public RenderTest() {
+    }
 
-	@BeforeClass
-	public static void setUpClass() {
-	}
+    @BeforeClass
+    public static void setUpClass() {
+    }
 
-	@AfterClass
-	public static void tearDownClass() {
-	}
+    @AfterClass
+    public static void tearDownClass() {
+    }
 
-	@Before
-	public void setUp() {
-	}
+    @Before
+    public void setUp() {
+    }
 
-	@After
-	public void tearDown() {
-	}
+    @After
+    public void tearDown() {
+    }
 
-	@Test
-	public void testFilesToFile() throws Exception {
-		File source = new File("target/test-classes/lorem.md");
-		File expected = new File("target/test-classes/expected.html");
-		File output = new File("target/test-classes/file-to-file.html");
+    @Test
+    public void testFilesToFile() throws Exception {
+        File source = new File("target/test-classes/lorem.md");
+        File expected = new File("target/test-classes/expected.html");
+        File output = new File("target/test-classes/file-to-file.html");
 
-		Options options = new Options();
-		options.setFrom(Format.markdown);
-		options.setTo(Format.html5);
+        Options options = new Options();
+        options.setFrom(Format.markdown);
+        options.setTo(Format.html5);
 
-		Pandoc pandoc = new Pandoc(new File("/usr/local/bin/pandoc"));
-		pandoc.render(options, source, output);
+        Pandoc pandoc = new Pandoc(new File("/usr/local/bin/pandoc"));
+        pandoc.render(options, source, output);
 
-		String expectedHtml = FileUtils.readFileToString(expected);
-		String actualHtml = FileUtils.readFileToString(output);
-		assertEquals("Generated HTML did not match expected", expectedHtml, actualHtml);
-	}
+        String expectedHtml = FileUtils.readFileToString(expected);
+        String actualHtml = FileUtils.readFileToString(output);
+        assertEquals("Generated HTML did not match expected", expectedHtml, actualHtml);
+    }
 
-	@Test
-	public void testStringToFile() throws Exception {
-		File source = new File("target/test-classes/lorem.md");
-		File expected = new File("target/test-classes/expected.html");
-		File output = new File("target/test-classes/string-to-file.html");
+    @Test
+    public void testStringToFile() throws Exception {
+        File source = new File("target/test-classes/lorem.md");
+        File expected = new File("target/test-classes/expected.html");
+        File output = new File("target/test-classes/string-to-file.html");
 
-		String expectedHtml = FileUtils.readFileToString(expected);
-		String sourceText = FileUtils.readFileToString(source);
+        String expectedHtml = FileUtils.readFileToString(expected);
+        String sourceText = FileUtils.readFileToString(source);
 
-		Options options = new Options();
-		options.setFrom(Format.markdown);
-		options.setTo(Format.html5);
+        Options options = new Options();
+        options.setFrom(Format.markdown);
+        options.setTo(Format.html5);
 
-		Pandoc pandoc = new Pandoc(new File("/usr/local/bin/pandoc"));
-		pandoc.render(options, sourceText, output);
+        Pandoc pandoc = new Pandoc(new File("/usr/local/bin/pandoc"));
+        pandoc.render(options, sourceText, output);
 
-		String actualHtml = pandoc.render(options, source);
-		assertEquals("Generated HTML did not match expected", expectedHtml, actualHtml);
-	}
+        String actualHtml = pandoc.render(options, source);
+        assertEquals("Generated HTML did not match expected", expectedHtml, actualHtml);
+    }
 
-	@Test
-	public void testFilesToString() throws Exception {
-		File source = new File("target/test-classes/lorem.md");
-		File expected = new File("target/test-classes/expected.html");
+    @Test
+    public void testFilesToString() throws Exception {
+        File source = new File("target/test-classes/lorem.md");
+        File expected = new File("target/test-classes/expected.html");
 
-		Options options = new Options();
-		options.setFrom(Format.markdown);
-		options.setTo(Format.html5);
+        Options options = new Options();
+        options.setFrom(Format.markdown);
+        options.setTo(Format.html5);
 
-		Pandoc pandoc = new Pandoc(new File("/usr/local/bin/pandoc"));
-		String actualHtml = pandoc.render(options, source);
-		String expectedHtml = FileUtils.readFileToString(expected);
-		assertEquals("Generated HTML did not match expected", expectedHtml, actualHtml);
-	}
+        Pandoc pandoc = new Pandoc(new File("/usr/local/bin/pandoc"));
+        String actualHtml = pandoc.render(options, source);
+        String expectedHtml = FileUtils.readFileToString(expected);
+        assertEquals("Generated HTML did not match expected", expectedHtml, actualHtml);
+    }
 
-	@Test
-	public void testStringToString() throws Exception {
-		File source = new File("target/test-classes/lorem.md");
-		File expected = new File("target/test-classes/expected.html");
+    @Test
+    public void testStringToString() throws Exception {
+        File source = new File("target/test-classes/lorem.md");
+        File expected = new File("target/test-classes/expected.html");
 
-		String expectedHtml = FileUtils.readFileToString(expected);
-		String sourceText = FileUtils.readFileToString(source);
+        String expectedHtml = FileUtils.readFileToString(expected);
+        String sourceText = FileUtils.readFileToString(source);
 
-		Options options = new Options();
-		options.setFrom(Format.markdown);
-		options.setTo(Format.html5);
+        Options options = new Options();
+        options.setFrom(Format.markdown);
+        options.setTo(Format.html5);
 
-		Pandoc pandoc = new Pandoc(new File("/usr/local/bin/pandoc"));
-		String actualHtml = pandoc.render(options, sourceText);
+        Pandoc pandoc = new Pandoc(new File("/usr/local/bin/pandoc"));
+        String actualHtml = pandoc.render(options, sourceText);
 
-		assertEquals("Generated HTML did not match expected", expectedHtml, actualHtml);
-	}
+        assertEquals("Generated HTML did not match expected", expectedHtml, actualHtml);
+    }
 
-	@Test
-	public void largeFileTest() throws Exception {
-		int size = HEADING.length() * 25 + GREEKING.length() * 2500;
-		StringBuilder text = new StringBuilder(size);
-		for (int i = 0; i < 25; i++) {
-			text.append(HEADING);
-			for (int j = 0; j < 100; j++) {
-				text.append(GREEKING);
-			}
-		}
+    @Test
+    public void largeFileTest() throws Exception {
+        int size = HEADING.length() * 25 + GREEKING.length() * 2500;
+        StringBuilder text = new StringBuilder(size);
+        for (int i = 0; i < 25; i++) {
+            text.append(HEADING);
+            for (int j = 0; j < 100; j++) {
+                text.append(GREEKING);
+            }
+        }
 
-		Options options = new Options();
-		options.setFrom(Format.markdown);
-		options.setTo(Format.html5);
-		options.setStandalone(Boolean.TRUE);
+        Options options = new Options();
+        options.setFrom(Format.markdown);
+        options.setTo(Format.html5);
+        options.setStandalone(Boolean.TRUE);
 
-		Pandoc pandoc = new Pandoc(new File("/usr/local/bin/pandoc"));
-		String actualHtml = pandoc.render(options, text.toString());
-	}
+        Pandoc pandoc = new Pandoc(new File("/usr/local/bin/pandoc"));
+        String actualHtml = pandoc.render(options, text.toString());
+    }
 
-	@Test
-	public void testFile2Docx() throws IOException {
-		File source = new File("target/test-classes/test.txt");
-		File output = new File("target/test-classes/file-to-docx.docx");
+    @Test
+    public void testFile2Docx() throws IOException {
+        File source = new File("target/test-classes/test.txt");
+        File output = new File("target/test-classes/file-to-docx.docx");
 
-		Options options = new Options();
-		options.setFrom(Format.markdown);
-		options.setTo(Format.docx);
+        Options options = new Options();
+        options.setFrom(Format.markdown);
+        options.setTo(Format.docx);
 
-		Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
-		pandoc.render(options, source, output);
-	}
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        pandoc.render(options, source, output);
+    }
+
+    @Test
+    public void testFile2DocxWithTemplate() throws IOException {
+        File source = new File("target/test-classes/test.txt");
+        File template = new File("target/test-classes/template.docx");
+        File output = new File("target/test-classes/file-to-docx-template.docx");
+
+        Options options = new Options();
+        options.setFrom(Format.markdown);
+        options.setTo(Format.docx);
+        //设置docx模板
+        options.setReferenceDOCX(template);
+
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        pandoc.render(options, source, output);
+    }
 }
