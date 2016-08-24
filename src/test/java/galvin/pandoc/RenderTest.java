@@ -223,7 +223,8 @@ public class RenderTest {
     public void testHtml2PDF() {
         File source = new File("target/test-classes/80690081.html");
         File output = new File("target/test-classes/80690081.pdf");
-        File template = new File("target/test-classes/pm-template.latex");
+        File template = new File("target/test-classes/pagestyle.tex");
+        //File template = new File("target/test-classes/pm-template.tex");
 
         Options options = new Options();
         options.setFrom(Format.html);
@@ -238,13 +239,14 @@ public class RenderTest {
         values.add(new KeyValue<>("papersize", "A4"));
         values.add(new KeyValue<>("fontsize", "10.5pt"));
         //values.add(new KeyValue<>("mathfont", "Times New Roman"));
-        values.add(new KeyValue<>("margin-left", "31.75mm"));
-        values.add(new KeyValue<>("margin-right", "31.75mm"));
-        values.add(new KeyValue<>("margin-top", "25.4mm"));
-        values.add(new KeyValue<>("margin-bottom", "25.4mm"));
+        //values.add(new KeyValue<>("margin-left", "31.75mm"));
+        //values.add(new KeyValue<>("margin-right", "31.75mm"));
+        //values.add(new KeyValue<>("margin-top", "25.4mm"));
+        //values.add(new KeyValue<>("margin-bottom", "25.4mm"));
+        values.add(new KeyValue<>("geometry", "top=25.4mm, bottom=25.4mm, left=31.75mm, right=31.75mm"));
         values.add(new KeyValue<>("linestretch", "1.5"));
         options.setVariables(values);
-        //options.setTemplate(template);
+        options.setTemplate(template);
         Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
         try {
             pandoc.render(options, source, output);
