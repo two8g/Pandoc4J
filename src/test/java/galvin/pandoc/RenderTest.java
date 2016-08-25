@@ -240,7 +240,7 @@ public class RenderTest {
         options.setLatexEngine(new File("/usr/bin/xelatex"));
 
         List<KeyValue<String, String>> values = new ArrayList<>();
-        values.add(new KeyValue<>("documentclass", "article"));
+        //values.add(new KeyValue<>("documentclass", "article"));
         values.add(new KeyValue<>("mainfont", "SimSun"));
         values.add(new KeyValue<>("papersize", "A4"));
         values.add(new KeyValue<>("fontsize", "10.5pt"));
