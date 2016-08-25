@@ -34,6 +34,21 @@ public class RenderTest {
             + "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa "
             + "qui officia deserunt mollit anim id est laborum.\n\n";
 
+    List<KeyValue<String, String>> values = new ArrayList<>();
+
+    @Before
+    public void setLaTeXVariavle() {
+        //values.add(new KeyValue<>("documentclass", "article"));
+        values.add(new KeyValue<>("mainfont", "SimSun"));
+        values.add(new KeyValue<>("papersize", "A4"));
+        values.add(new KeyValue<>("fontsize", "10.5pt"));
+        values.add(new KeyValue<>("title", "2016年中考真题化学（陕西卷）"));
+        values.add(new KeyValue<>("dxh", "导学号:80690081"));
+        values.add(new KeyValue<>("mathfont", "Times New Roman"));
+        values.add(new KeyValue<>("geometry", "top=1.28cm, bottom=5.08cm, left=3.18cm, right=3.18cm"));
+        values.add(new KeyValue<>("linestretch", "1.5"));
+    }
+
     public RenderTest() {
     }
 
@@ -239,16 +254,6 @@ public class RenderTest {
         options.setExtensions(extensionList);
         options.setLatexEngine(new File("/usr/bin/xelatex"));
 
-        List<KeyValue<String, String>> values = new ArrayList<>();
-        //values.add(new KeyValue<>("documentclass", "article"));
-        values.add(new KeyValue<>("mainfont", "SimSun"));
-        values.add(new KeyValue<>("papersize", "A4"));
-        values.add(new KeyValue<>("fontsize", "10.5pt"));
-        values.add(new KeyValue<>("title", "2016年中考真题化学（陕西卷）"));
-        values.add(new KeyValue<>("dxh", "导学号:80690081"));
-        values.add(new KeyValue<>("mathfont", "Times New Roman"));
-        values.add(new KeyValue<>("geometry", "top=1.28cm, bottom=5.08cm, left=3.18cm, right=3.18cm"));
-        values.add(new KeyValue<>("linestretch", "1.5"));
         options.setVariables(values);
         options.setTemplate(template);
         Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
@@ -282,16 +287,6 @@ public class RenderTest {
         options.setExtensions(extensionList);
         options.setLatexEngine(new File("/usr/bin/xelatex"));
 
-        List<KeyValue<String, String>> values = new ArrayList<>();
-        values.add(new KeyValue<>("documentclass", "article"));
-        values.add(new KeyValue<>("mainfont", "SimSun"));
-        values.add(new KeyValue<>("papersize", "A4"));
-        values.add(new KeyValue<>("fontsize", "12pt"));
-        values.add(new KeyValue<>("title", "2016年中考真题化学（陕西卷）"));
-        values.add(new KeyValue<>("dxh", "导学号:80690081"));
-        values.add(new KeyValue<>("mathfont", "Times New Roman"));
-        values.add(new KeyValue<>("geometry", "top=1.3cm, bottom=2.54cm, left=3.175cm, right=3.175cm"));
-        values.add(new KeyValue<>("linestretch", "1.5"));
         options.setVariables(values);
         options.setTemplate(template);
         Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
@@ -302,13 +297,13 @@ public class RenderTest {
         }
 
         File docxoutput = new File("target/test-classes/80690081-tex.docx");
-        File referenceDocx = new File("target/test-classes/ref.docx");
         Options options1 = new Options();
         options1.setFrom(Format.latex);
         options1.setTo(Format.docx);
         extensionList.remove(0);
         extensionList.add(Extension.auto_identifiers);
         options1.setExtensions(extensionList);
+        //File referenceDocx = new File("target/test-classes/ref.docx");
         //options1.setReferenceDOCX(referenceDocx);
         try {
             pandoc.render(options1, output, docxoutput);
@@ -318,7 +313,7 @@ public class RenderTest {
     }
 
     @Test
-    public void testDocx2pdf(){
+    public void testDocx2pdf() {
         File source = new File("target/test-classes/cbc37fc98ee14df082619f46e6367195.docx");
         File output = new File("target/test-classes/80690081-docx.pdf");
         File template = new File("target/test-classes/pagestyle.tex");
@@ -331,15 +326,6 @@ public class RenderTest {
         options.setLatexEngine(new File("/usr/bin/xelatex"));
 
         List<KeyValue<String, String>> values = new ArrayList<>();
-        values.add(new KeyValue<>("documentclass", "article"));
-        values.add(new KeyValue<>("mainfont", "SimSun"));
-        values.add(new KeyValue<>("papersize", "a4"));
-        values.add(new KeyValue<>("fontsize", "10.5pt"));
-        values.add(new KeyValue<>("title", "2016年中考真题化学（陕西卷）"));
-        values.add(new KeyValue<>("dxh", "导学号:80690081"));
-        values.add(new KeyValue<>("mathfont", "Times New Roman"));
-        values.add(new KeyValue<>("geometry", "top=2.54cm, bottom=2.54cm, left=3.175cm, right=3.175cm"));
-        values.add(new KeyValue<>("linestretch", "1.5"));
         options.setVariables(values);
         options.setTemplate(template);
         Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
