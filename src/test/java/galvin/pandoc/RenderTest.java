@@ -239,7 +239,7 @@ public class RenderTest {
         values.add(new KeyValue<>("documentclass", "article"));
         values.add(new KeyValue<>("mainfont", "SimSun"));
         values.add(new KeyValue<>("papersize", "a4"));
-        values.add(new KeyValue<>("fontsize", "10.5pt"));
+        values.add(new KeyValue<>("fontsize", "12pt"));
         values.add(new KeyValue<>("title", "2016年中考真题化学（陕西卷）"));
         values.add(new KeyValue<>("dxh", "导学号:80690081"));
         values.add(new KeyValue<>("mathfont", "Times New Roman"));
@@ -259,6 +259,54 @@ public class RenderTest {
         }
 
         File texoutput = new File("target/test-classes/80690081.tex");
+        options.setTo(Format.latex);
+        try {
+            pandoc.render(options, source, texoutput);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testDocx2pdf(){
+        File source = new File("target/test-classes/cbc37fc98ee14df082619f46e6367195.docx");
+        File output = new File("target/test-classes/80690081-docx.pdf");
+        File template = new File("target/test-classes/pagestyle.tex");
+        //File template = new File("target/test-classes/pm-template.tex");
+
+        Options options = new Options();
+        options.setFrom(Format.docx);
+        options.setTo(Format.pdf);
+        options.setSmart(Boolean.TRUE);
+        //List<Extension> extensionList = new ArrayList<>();
+        //extensionList.add(Extension.tex_math_dollars);
+        //options.setExtensions(extensionList);
+        options.setLatexEngine(new File("/usr/bin/xelatex"));
+
+        List<KeyValue<String, String>> values = new ArrayList<>();
+        values.add(new KeyValue<>("documentclass", "article"));
+        values.add(new KeyValue<>("mainfont", "SimSun"));
+        values.add(new KeyValue<>("papersize", "a4"));
+        values.add(new KeyValue<>("fontsize", "10.5pt"));
+        values.add(new KeyValue<>("title", "2016年中考真题化学（陕西卷）"));
+        values.add(new KeyValue<>("dxh", "导学号:80690081"));
+        values.add(new KeyValue<>("mathfont", "Times New Roman"));
+        //values.add(new KeyValue<>("margin-left", "31.75mm"));
+        //values.add(new KeyValue<>("margin-right", "31.75mm"));
+        //values.add(new KeyValue<>("margin-top", "25.4mm"));
+        //values.add(new KeyValue<>("margin-bottom", "25.4mm"));
+        values.add(new KeyValue<>("geometry", "top=2.54cm, bottom=2.54cm, left=3.175cm, right=3.175cm"));
+        values.add(new KeyValue<>("linestretch", "1.5"));
+        options.setVariables(values);
+        options.setTemplate(template);
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        try {
+            pandoc.render(options, source, output);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        File texoutput = new File("target/test-classes/80690081-docx.tex");
         options.setTo(Format.latex);
         try {
             pandoc.render(options, source, texoutput);

@@ -16,6 +16,8 @@ $endif$
 \usepackage{layout}
 %图片上添加文字
 \usepackage{overpic}
+%\usepackage[center]{titlesec}
+%\titleformat{\chapter}{\centering\Huge\bfseries}{$title$}
 \usepackage{CJK}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -200,7 +202,9 @@ $endfor$
 
 $if(title)$
 \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+%\title{\centering \large $title$$if(thanks)$\thanks{$thanks$}$endif$}
 $endif$
+
 $if(subtitle)$
 \providecommand{\subtitle}[1]{}
 \subtitle{$subtitle$}
@@ -214,6 +218,9 @@ $endif$
 $if(title)$
 \maketitle
 $endif$
+%$if(title)$
+%\titleformat{\chapter}{\centering\Huge\bfseries}{$title$}
+%$endif$
 %%设置页眉页脚,方法一
 %%\usepackage{titlesec}
 %\newpagestyle{main}{
@@ -225,6 +232,7 @@ $endif$
 %\pagestyle{main}    %使用该style
 %%设置页眉页脚,方法二
 %在\maketitle之后，添加命令,使得第一页也有页眉
+\thispagestyle{fancy}
 \pagestyle{fancy}   %设置页眉
 \fancyhead{}    %清除以前的命令
 \renewcommand{\headrulewidth}{0pt}  %把页眉线的宽度设为零，即去掉页眉线
