@@ -247,7 +247,7 @@ public class RenderTest {
         //values.add(new KeyValue<>("margin-right", "31.75mm"));
         //values.add(new KeyValue<>("margin-top", "25.4mm"));
         //values.add(new KeyValue<>("margin-bottom", "25.4mm"));
-        values.add(new KeyValue<>("geometry", "top=1.6cm, bottom=2.54cm, left=3.175cm, right=3.175cm"));
+        values.add(new KeyValue<>("geometry", "top=1.3cm, bottom=2.54cm, left=3.175cm, right=3.175cm"));
         values.add(new KeyValue<>("linestretch", "1.5"));
         options.setVariables(values);
         options.setTemplate(template);
