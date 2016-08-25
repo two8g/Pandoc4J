@@ -238,7 +238,7 @@ public class RenderTest {
         List<KeyValue<String, String>> values = new ArrayList<>();
         values.add(new KeyValue<>("documentclass", "article"));
         values.add(new KeyValue<>("mainfont", "SimSun"));
-        values.add(new KeyValue<>("papersize", "a4"));
+        values.add(new KeyValue<>("papersize", "A4"));
         values.add(new KeyValue<>("fontsize", "12pt"));
         values.add(new KeyValue<>("title", "2016年中考真题化学（陕西卷）"));
         values.add(new KeyValue<>("dxh", "导学号:80690081"));
@@ -247,7 +247,7 @@ public class RenderTest {
         //values.add(new KeyValue<>("margin-right", "31.75mm"));
         //values.add(new KeyValue<>("margin-top", "25.4mm"));
         //values.add(new KeyValue<>("margin-bottom", "25.4mm"));
-        values.add(new KeyValue<>("geometry", "top=2.54cm, bottom=2.54cm, left=3.175cm, right=3.175cm"));
+        values.add(new KeyValue<>("geometry", "top=1.6cm, bottom=2.54cm, left=3.175cm, right=3.175cm"));
         values.add(new KeyValue<>("linestretch", "1.5"));
         options.setVariables(values);
         options.setTemplate(template);
