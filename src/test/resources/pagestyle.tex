@@ -11,9 +11,20 @@ $if(linestretch)$
 \usepackage{setspace}
 \setstretch{$linestretch$}
 $endif$
+%页眉页脚
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{layout}
+\pagestyle{fancy}   %设置页眉
+\renewcommand{\headrulewidth}{0pt}  %把页眉线的宽度设为零，即去掉页眉线
+\renewcommand{\footrulewidth}{0pt}  %把页眉线的宽度设为零，即去掉页眉线
+\lhead{\includegraphics[height=1.76cm]{/home/two8g/Develop/IdeaProjects/Pandoc4J/target/test-classes/head-250x74.jpg}}    %页面图片路径
+$if(dxh)$
+\rhead{\textbf $dxh$}
+$endif$
+\lfoot{\includegraphics[height=1.76cm]{/home/two8g/Develop/IdeaProjects/Pandoc4J/target/test-classes/foot-125x50.jpg}}
+\cfoot{}
+\rfoot{\thepage}
 %图片上添加文字
 \usepackage{overpic}
 %\usepackage[center]{titlesec}
@@ -218,6 +229,8 @@ $endif$
 $if(title)$
 \maketitle
 $endif$
+%在\maketitle之后，添加命令,使得第一页也有页眉 http://www.ctex.org/documents/packages/layout/fancyhdr.htm
+\thispagestyle{fancy}
 %$if(title)$
 %\titleformat{\chapter}{\centering\Huge\bfseries}{$title$}
 %$endif$
@@ -231,17 +244,7 @@ $endif$
 %}
 %\pagestyle{main}    %使用该style
 %%设置页眉页脚,方法二
-%在\maketitle之后，添加命令,使得第一页也有页眉
-\thispagestyle{fancy}
-\pagestyle{fancy}   %设置页眉
-\fancyhead{}    %清除以前的命令
-\renewcommand{\headrulewidth}{0pt}  %把页眉线的宽度设为零，即去掉页眉线
-\renewcommand{\footrulewidth}{0pt}  %把页眉线的宽度设为零，即去掉页眉线
-\lhead{\includegraphics[height=2.54cm]{/home/two8g/Develop/IdeaProjects/Pandoc4J/target/test-classes/head-250x74.jpg}}    %页面图片路径
-$if(dxh)$
-\rhead{\normalsize \textbf $dxh$}
-$endif$
-\lfoot{\includegraphics[height=1.54cm]{/home/two8g/Develop/IdeaProjects/Pandoc4J/target/test-classes/foot.jpg}}
+
 %图片上添加文字
 %%\usepackage{overpic}
 %$if(dxh)$
@@ -287,15 +290,15 @@ $else$
 $endif$
 $endif$
 \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+$endif$
+$endif$
 
-$endif$
-$endif$
 $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-
 $endif$
+
 $for(include-after)$
 $include-after$
-
 $endfor$
+
 \end{document}

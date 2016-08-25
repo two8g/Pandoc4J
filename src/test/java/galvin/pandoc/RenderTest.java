@@ -234,7 +234,6 @@ public class RenderTest {
         Options options = new Options();
         options.setFrom(Format.html);
         options.setTo(Format.pdf);
-        options.setSmart(Boolean.TRUE);
         List<Extension> extensionList = new ArrayList<>();
         extensionList.add(Extension.tex_math_dollars);
         options.setExtensions(extensionList);
@@ -244,11 +243,11 @@ public class RenderTest {
         values.add(new KeyValue<>("documentclass", "article"));
         values.add(new KeyValue<>("mainfont", "SimSun"));
         values.add(new KeyValue<>("papersize", "A4"));
-        values.add(new KeyValue<>("fontsize", "12pt"));
+        values.add(new KeyValue<>("fontsize", "10.5pt"));
         values.add(new KeyValue<>("title", "2016年中考真题化学（陕西卷）"));
         values.add(new KeyValue<>("dxh", "导学号:80690081"));
         values.add(new KeyValue<>("mathfont", "Times New Roman"));
-        values.add(new KeyValue<>("geometry", "top=1.3cm, bottom=2.54cm, left=3.175cm, right=3.175cm"));
+        values.add(new KeyValue<>("geometry", "top=1.28cm, bottom=5.08cm, left=3.18cm, right=3.18cm"));
         values.add(new KeyValue<>("linestretch", "1.5"));
         options.setVariables(values);
         options.setTemplate(template);
