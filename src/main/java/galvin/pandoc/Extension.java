@@ -9,7 +9,8 @@ public enum Extension {
 
 	tex_math_dollars("tex_math_dollars", Format.html),
 	tex_math_single_backslash("tex_math_single_backslash", Format.html),
-	tex_math_double_backslash("tex_math_double_backslash", Format.html);
+	tex_math_double_backslash("tex_math_double_backslash", Format.html),
+	auto_identifiers("auto_identifiers",Format.latex);
 
 	private String extension;
 	private Format format;

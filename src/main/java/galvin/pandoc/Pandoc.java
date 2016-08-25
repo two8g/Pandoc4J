@@ -86,6 +86,10 @@ public class Pandoc {
         }
 
         String[] command = options.getPandocCommand();
+        //command
+        for (String s : command) {
+            System.out.print(s + " ");
+        }
         Process p = Runtime.getRuntime().exec(command);
 
         ////读取标准输出流

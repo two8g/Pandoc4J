@@ -1,0 +1,88 @@
+\documentclass[10pt,twoside,twocolumn]{ctexart}
+\usepackage[papersize={25cm,35.2cm},hmargin={4.5cm,0.51cm},vmargin={1.5cm},landscape]{geometry}
+%\usepackage[papersize={7cm,9cm},hmargin={0.3cm},vmargin={0.3cm},landscape]{geometry}%屏幕版
+\usepackage{amsmath,amsthm,amscd,amssymb,graphicx,comment,enumerate,picins,ifthen,multicol}%引用包列表
+\usepackage{fancyhdr}
+\pagestyle{fancy} \columnsep=10mm
+\renewcommand\baselinestretch{1.5}
+\renewcommand{\headrulewidth}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%选项排版%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\kh}{(\rule[-2pt]{1cm}{0pt})}
+\newcommand{\fourch}[4]{\hfill\kh\par\noindent\begin{tabular}{*{4}{@{}p{3.4cm}}}(A)~#1
+    & (B)~#2 & (C)~#3 & (D)~#4\end{tabular}}
+\newcommand{\twoch}[4]{\hfill\kh\par\noindent\begin{tabular}{*{2}{@{}p{6.8cm}}}(A)~#1
+    & (B)~#2\end{tabular}\par\noindent\begin{tabular}{*{2}{@{}p{6.8cm}}}(C)~#3 &
+    (D)~#4\end{tabular}}
+\newcommand{\threech}[3]{\begin{tabular}{*{2}{@{}p{6.5cm}}}A.~~#1
+    & B.~~#2\end{tabular}\par\noindent\begin{tabular}{*{2}{@{}p{6.5cm}}}C.~~#3 &
+    ~\end{tabular}}
+\newcommand{\threechk}[3]{\begin{tabular}{*{2}{@{}p{6.5cm}}}A.~~#1
+    & B.~~#2\end{tabular}\par\noindent\begin{tabular}{*{2}{@{}p{6.5cm}}}\qquad C.~~#3 &
+    ~\end{tabular}}
+
+\newcommand{\onech}[4]{\hfill\kh\par\noindent(A)~#1 \par\noindent (B)~#2 \par\noindent (C)~#3 \par\noindent (D)~#4}
+
+\newcommand{\fourchs}[4]{\hfill\kh\par\noindent\begin{tabular}{*{4}{@{}p{3.4cm}}}(A)~$#1$
+    & (B)~$#2$ & (C)~$#3$ & (D)~$#4$\end{tabular}}
+\newcommand{\twochs}[4]{\hfill\kh\par\noindent\begin{tabular}{*{2}{@{}p{6.8cm}}}(A)~$#1$
+    & (B)~$#2$\end{tabular}\par\noindent\begin{tabular}{*{2}{@{}p{6.4cm}}}(C)~$#3$ &
+    (D)~$#4$\end{tabular}}
+\newcommand{\onechs}[4]{\hfill\kh\par(A)~$#1$ \par (B)~$#2$ \par (C)~$#3$ \par (D)~$#4$}
+
+\includecomment{student}
+\excludecomment{teacher}
+\begin{document}
+
+
+\newsavebox{\zdxa}
+\newsavebox{\zdxb}
+\sbox{\zdxa}{
+\large
+学校\raisebox{-2pt}{\rule{35mm}{0.4pt}}%
+班级\raisebox{-2pt}{\rule{35mm}{0.4pt}}%
+姓名\raisebox{-2pt}{\rule{35mm}{0.4pt}}%
+考场\raisebox{-2pt}{\rule{35mm}{0.4pt}}%
+考号\raisebox{-2pt}{\rule{35mm}{0.4pt}}
+}
+\sbox{\zdxb}{\large%
+...........................................\raisebox{-0.5ex}{装}%
+...........................................\raisebox{-0.5ex}{订}%
+...........................................\raisebox{-0.5ex}{线}%
+...........................................}
+\fancyfoot[OL,ER]{
+\begin{picture}(1,1)
+\put(-95,340){\rotatebox[origin=c]{90}{\usebox{\zdxa}}}
+\put(-15,340){\rotatebox[origin=c]{90}{\usebox{\zdxb}}}
+\end{picture}}
+\fancyfoot[OR]{
+\raisebox{4ex}{
+\begin{tabular}{|c|c|cc}\hline
+\raisebox{-1.5ex}{座号}
+&$\qquad$\\[5mm]\hline
+\end{tabular}}}
+\fancyfoot[ER]{
+\begin{picture}(1,1)
+%\put(40,340){\rotatebox[origin=c]{-90}{\usebox{\zdxa}}}
+\put(10,340){\rotatebox[origin=c]{-90}{\usebox{\zdxb}}}
+\end{picture}
+}
+\setlength{\columnseprule}{0.4pt}
+\begin{center}
+\begin{student}
+\begin{minipage}[t]{12cm}
+\LARGE\centering
+$2010$---$2011$\bf学年上学期十月份调研测试
+\par七年级数学
+\end{minipage}
+\end{student}
+\begin{teacher}
+\begin{minipage}[t]{12cm}
+\LARGE\centering
+$2009$---$2010$\bf学年上学期十月份调研测试
+\par七年级数学
+\end{minipage}
+\end{teacher}
+\end{center}
+
+\end{document}
