@@ -37,7 +37,7 @@ public class RenderTest {
     List<KeyValue<String, String>> values = new ArrayList<>();
 
     @Before
-    public void setLaTeXVariavle() {
+    public void setLaTeXVariable() {
         //values.add(new KeyValue<>("documentclass", "article"));
         values.add(new KeyValue<>("mainfont", "SimSun"));
         values.add(new KeyValue<>("papersize", "A4"));
