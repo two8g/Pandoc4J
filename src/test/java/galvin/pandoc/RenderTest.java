@@ -195,13 +195,8 @@ public class RenderTest {
         List<Extension> extensionList = new ArrayList<>();
         extensionList.add(Extension.tex_math_dollars);
         options.setExtensions(extensionList);
-        try {
-            options.setCss(new URL("/home/two8g/Develop/IdeaProjects/Pandoc4J/src/test/resources/template.css"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
         //设置docx模板
-        options.setReferenceDOCX(template);
+        //options.setReferenceDOCX(template);
 
         Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
         try {
@@ -214,7 +209,7 @@ public class RenderTest {
     @Test
     public void testFile2DocxWithTemplate80690081() {
         File source = new File("target/test-classes/80690081.html");
-        File template = new File("target/test-classes/result.docx");
+        File template = new File("target/test-classes/docx.docx");
         File output = new File("target/test-classes/80690081.docx");
 
         Options options = new Options();
@@ -223,11 +218,6 @@ public class RenderTest {
         List<Extension> extensionList = new ArrayList<>();
         extensionList.add(Extension.tex_math_dollars);
         options.setExtensions(extensionList);
-        try {
-            options.setCss(new URL("file:///home/two8g/Develop/IdeaProjects/Pandoc4J/src/test/resources/template.css"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
         //设置docx模板
         options.setReferenceDOCX(template);
 
@@ -303,8 +293,8 @@ public class RenderTest {
         extensionList.remove(0);
         extensionList.add(Extension.auto_identifiers);
         options1.setExtensions(extensionList);
-        //File referenceDocx = new File("target/test-classes/ref.docx");
-        //options1.setReferenceDOCX(referenceDocx);
+        File referenceDocx = new File("target/test-classes/paper.docx");
+        options1.setReferenceDOCX(referenceDocx);
         try {
             pandoc.render(options1, output, docxoutput);
         } catch (Exception e) {
@@ -420,6 +410,58 @@ public class RenderTest {
         //设置docx模板
         options.setReferenceDOCX(template);
 
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        try {
+            pandoc.render(options, source, output);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void tex2pdf() {
+        File source = new File("target/test-classes/test1.tex");
+        File output = new File("target/test-classes/test1.pdf");
+
+        Options options = new Options();
+        options.setFrom(Format.latex);
+        options.setTo(Format.pdf);
+        options.setLatexEngine(new File("/usr/bin/xelatex"));
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        try {
+            pandoc.render(options, source, output);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void html2odt() {
+        File source = new File("target/test-classes/80690081.html");
+        File output = new File("target/test-classes/80690081.odt");
+
+        Options options = new Options();
+        options.setFrom(Format.html);
+        options.setTo(Format.odt);
+        options.setSmart(Boolean.TRUE);
+        List<Extension> extensionList = new ArrayList<>();
+        extensionList.add(Extension.tex_math_dollars);
+        Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
+        try {
+            pandoc.render(options, source, output);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void odt2docx() {
+        File source = new File("target/test-classes/80690081.odt");
+        File output = new File("target/test-classes/80690081.docx");
+
+        Options options = new Options();
+        options.setFrom(Format.odt);
+        options.setTo(Format.docx);
         Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
         try {
             pandoc.render(options, source, output);

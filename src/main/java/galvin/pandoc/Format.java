@@ -31,7 +31,7 @@ public enum Format
     markdown_strict( true, true ),
     mediaWiki( true, true ),
     format_native( true, true ),
-    odt( false, true ),
+    odt( true, true ),
     opendocument( false, true ),
     opml( true, true ),
     org( true, true ),
