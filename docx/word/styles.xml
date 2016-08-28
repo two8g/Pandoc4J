@@ -19,12 +19,16 @@
     </w:docDefaults>
     <w:latentStyles w:defLockedState="0" w:defUIPriority="0" w:defSemiHidden="0" w:defUnhideWhenUsed="0"
                     w:defQFormat="0" w:count="276"/>
+    <!--样式-->
     <w:style w:type="paragraph" w:default="1" w:styleId="Normal">
+        <!--名称-->
         <w:name w:val="Normal"/>
         <w:qFormat/>
     </w:style>
+    <!--正文-->
     <w:style w:type="paragraph" w:styleId="BodyText">
         <w:name w:val="Body Text"/>
+        <!--基样式-->
         <w:basedOn w:val="Normal"/>
         <w:link w:val="BodyTextChar"/>
         <w:pPr>
@@ -46,27 +50,35 @@
             <w:spacing w:before="36" w:after="36"/>
         </w:pPr>
     </w:style>
+    <!--标题样式-->
     <w:style w:type="paragraph" w:styleId="Title">
         <w:name w:val="Title"/>
         <w:basedOn w:val="Normal"/>
         <w:next w:val="BodyText"/>
         <w:qFormat/>
+        <!--段样式-->
         <w:pPr>
             <w:keepNext/>
             <w:keepLines/>
-            <w:spacing w:before="480" w:after="240"/>
+            <w:spacing w:before="480" w:after="480"/>
+            <!--对齐方式-->
             <w:jc w:val="center"/>
         </w:pPr>
+        <!--文字属性-->
         <w:rPr>
             <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi"
                       w:cstheme="majorBidi"/>
+            <!--加粗-->
             <w:b/>
             <w:bCs/>
-            <w:color w:val="345A8A" w:themeColor="accent1" w:themeShade="B5"/>
+            <w:color w:val="000000" w:themeColor="accent1" w:themeShade="B5"/>
+            <!--字体大小-->
             <w:sz w:val="36"/>
+            <!--字体大小，used for complex script fonts such as Arabic-->
             <w:szCs w:val="36"/>
         </w:rPr>
     </w:style>
+    <!--副标题-->
     <w:style w:type="paragraph" w:styleId="Subtitle">
         <w:name w:val="Subtitle"/>
         <w:basedOn w:val="Title"/>
@@ -83,6 +95,7 @@
             <w:szCs w:val="30"/>
         </w:rPr>
     </w:style>
+    <!--作者-->
     <w:style w:type="paragraph" w:customStyle="1" w:styleId="Author">
         <w:name w:val="Author"/>
         <w:next w:val="BodyText"/>
@@ -103,6 +116,7 @@
             <w:jc w:val="center"/>
         </w:pPr>
     </w:style>
+    <!--摘要-->
     <w:style w:type="paragraph" w:customStyle="1" w:styleId="Abstract">
         <w:name w:val="Abstract"/>
         <w:basedOn w:val="Normal"/>
@@ -118,6 +132,7 @@
             <w:szCs w:val="20"/>
         </w:rPr>
     </w:style>
+    <!--参考书目；文献目录-->
     <w:style w:type="paragraph" w:styleId="Bibliography">
         <w:name w:val="Bibliography"/>
         <w:basedOn w:val="Normal"/>
@@ -126,6 +141,7 @@
         <w:pPr/>
         <w:rPr/>
     </w:style>
+    <!--标题1 h1-->
     <w:style w:type="paragraph" w:styleId="Heading1">
         <w:name w:val="Heading 1"/>
         <w:basedOn w:val="Normal"/>
@@ -143,11 +159,12 @@
                       w:cstheme="majorBidi"/>
             <w:b/>
             <w:bCs/>
-            <w:color w:val="345A8A" w:themeColor="accent1" w:themeShade="B5"/>
+            <w:color w:val="000000" w:themeColor="accent1" w:themeShade="B5"/>
             <w:sz w:val="32"/>
             <w:szCs w:val="32"/>
         </w:rPr>
     </w:style>
+    <!--标题2 h2-->
     <w:style w:type="paragraph" w:styleId="Heading2">
         <w:name w:val="Heading 2"/>
         <w:basedOn w:val="Normal"/>
@@ -166,11 +183,12 @@
                       w:cstheme="majorBidi"/>
             <w:b/>
             <w:bCs/>
-            <w:color w:val="4F81BD" w:themeColor="accent1"/>
+            <w:color w:val="000000" w:themeColor="accent1"/>
             <w:sz w:val="32"/>
             <w:szCs w:val="32"/>
         </w:rPr>
     </w:style>
+    <!--标题3 h3-->
     <w:style w:type="paragraph" w:styleId="Heading3">
         <w:name w:val="Heading 3"/>
         <w:basedOn w:val="Normal"/>
@@ -189,11 +207,12 @@
                       w:cstheme="majorBidi"/>
             <w:b/>
             <w:bCs/>
-            <w:color w:val="4F81BD" w:themeColor="accent1"/>
+            <w:color w:val="000000" w:themeColor="accent1"/>
             <w:sz w:val="28"/>
             <w:szCs w:val="28"/>
         </w:rPr>
     </w:style>
+    <!--标题4 h4-->
     <w:style w:type="paragraph" w:styleId="Heading4">
         <w:name w:val="Heading 4"/>
         <w:basedOn w:val="Normal"/>
@@ -212,11 +231,12 @@
                       w:cstheme="majorBidi"/>
             <w:b/>
             <w:bCs/>
-            <w:color w:val="4F81BD" w:themeColor="accent1"/>
+            <w:color w:val="000000" w:themeColor="accent1"/>
             <w:sz w:val="24"/>
             <w:szCs w:val="24"/>
         </w:rPr>
     </w:style>
+    <!--标题5 h5-->
     <w:style w:type="paragraph" w:styleId="Heading5">
         <w:name w:val="Heading 5"/>
         <w:basedOn w:val="Normal"/>
@@ -235,11 +255,12 @@
                       w:cstheme="majorBidi"/>
             <w:i/>
             <w:iCs/>
-            <w:color w:val="4F81BD" w:themeColor="accent1"/>
+            <w:color w:val="000000" w:themeColor="accent1"/>
             <w:sz w:val="24"/>
             <w:szCs w:val="24"/>
         </w:rPr>
     </w:style>
+    <!--标题6 h6-->
     <w:style w:type="paragraph" w:styleId="Heading6">
         <w:name w:val="Heading 6"/>
         <w:basedOn w:val="Normal"/>
@@ -256,11 +277,12 @@
         <w:rPr>
             <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi"
                       w:cstheme="majorBidi"/>
-            <w:color w:val="4F81BD" w:themeColor="accent1"/>
+            <w:color w:val="000000" w:themeColor="accent1"/>
             <w:sz w:val="24"/>
             <w:szCs w:val="24"/>
         </w:rPr>
     </w:style>
+    <!--块文字-->
     <w:style w:type="paragraph" w:styleId="BlockText">
         <w:name w:val="Block Text"/>
         <w:basedOn w:val="BodyText"/>
@@ -280,6 +302,7 @@
             <w:szCs w:val="20"/>
         </w:rPr>
     </w:style>
+    <!--脚注-->
     <w:style w:type="paragraph" w:styleId="FootnoteText">
         <w:name w:val="Footnote Text"/>
         <w:basedOn w:val="Normal"/>
@@ -290,18 +313,10 @@
     </w:style>
     <w:style w:type="character" w:default="1" w:styleId="DefaultParagraphFont">
         <w:name w:val="Default Paragraph Font"/>
-        <w:semiHidden/>
-        <w:unhideWhenUsed/>
     </w:style>
+    <!--表格-->
     <w:style w:type="table" w:default="1" w:styleId="TableNormal">
         <w:name w:val="Normal Table"/>
-        <w:semiHidden/>
-        <w:unhideWhenUsed/>
-        <w:qFormat/>
-        <w:pPr>
-            <w:widowControl w:val="0"/>
-            <w:jc w:val="both"/>
-        </w:pPr>
         <w:tblPr>
             <w:tblLayout w:type="fixed"/>
             <w:tblCellMar>
