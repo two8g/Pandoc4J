@@ -4,7 +4,7 @@
     <w:docDefaults>
         <w:rPrDefault>
             <w:rPr>
-                <w:rFonts w:asciiTheme="minorHAnsi" w:eastAsiaTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi"
+                <w:rFonts w:asciiTheme="Arial" w:eastAsiaTheme="宋体" w:hAnsiTheme="minorHAnsi"
                           w:cstheme="minorBidi"/>
                 <w:sz w:val="24"/>
                 <w:szCs w:val="24"/>
@@ -66,7 +66,7 @@
         </w:pPr>
         <!--文字属性-->
         <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi"
+            <w:rFonts w:asciiTheme="Arial" w:eastAsiaTheme="宋体" w:hAnsiTheme="majorHAnsi"
                       w:cstheme="majorBidi"/>
             <!--加粗-->
             <w:b/>
@@ -155,7 +155,7 @@
             <w:outlineLvl w:val="0"/>
         </w:pPr>
         <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi"
+            <w:rFonts w:asciiTheme="Arial" w:eastAsiaTheme="宋体" w:hAnsiTheme="majorHAnsi"
                       w:cstheme="majorBidi"/>
             <w:b/>
             <w:bCs/>
@@ -179,7 +179,7 @@
             <w:outlineLvl w:val="1"/>
         </w:pPr>
         <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi"
+            <w:rFonts w:asciiTheme="Arial" w:eastAsiaTheme="宋体" w:hAnsiTheme="majorHAnsi"
                       w:cstheme="majorBidi"/>
             <w:b/>
             <w:bCs/>
@@ -203,7 +203,7 @@
             <w:outlineLvl w:val="2"/>
         </w:pPr>
         <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi"
+            <w:rFonts w:asciiTheme="Arial" w:eastAsiaTheme="宋体" w:hAnsiTheme="majorHAnsi"
                       w:cstheme="majorBidi"/>
             <w:b/>
             <w:bCs/>
@@ -227,7 +227,7 @@
             <w:outlineLvl w:val="3"/>
         </w:pPr>
         <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi"
+            <w:rFonts w:asciiTheme="Arial" w:eastAsiaTheme="宋体" w:hAnsiTheme="majorHAnsi"
                       w:cstheme="majorBidi"/>
             <w:b/>
             <w:bCs/>
@@ -251,7 +251,7 @@
             <w:outlineLvl w:val="4"/>
         </w:pPr>
         <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi"
+            <w:rFonts w:asciiTheme="Arial" w:eastAsiaTheme="宋体" w:hAnsiTheme="majorHAnsi"
                       w:cstheme="majorBidi"/>
             <w:i/>
             <w:iCs/>
@@ -275,7 +275,7 @@
             <w:outlineLvl w:val="5"/>
         </w:pPr>
         <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi"
+            <w:rFonts w:asciiTheme="Arial" w:eastAsiaTheme="宋体" w:hAnsiTheme="majorHAnsi"
                       w:cstheme="majorBidi"/>
             <w:color w:val="000000" w:themeColor="accent1"/>
             <w:sz w:val="24"/>
@@ -295,7 +295,7 @@
             <w:ind w:firstLine="0"/>
         </w:pPr>
         <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi"
+            <w:rFonts w:asciiTheme="Arial" w:eastAsiaTheme="宋体" w:hAnsiTheme="majorHAnsi"
                       w:cstheme="majorBidi"/>
             <w:bCs/>
             <w:sz w:val="20"/>
@@ -424,7 +424,7 @@
             <w:outlineLvl w:val="9"/>
         </w:pPr>
         <w:rPr>
-            <w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi"
+            <w:rFonts w:asciiTheme="Arial" w:eastAsiaTheme="宋体" w:hAnsiTheme="majorHAnsi"
                       w:cstheme="majorBidi"/>
             <w:b w:val="0"/>
             <w:bCs w:val="0"/>
