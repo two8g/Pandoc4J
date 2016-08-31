@@ -98,12 +98,7 @@ public class Pandoc {
         //while ((line = bufferedReader.readLine()) != null) {
         //    System.out.println(line);
         //}
-        //读取标准错误流
-        BufferedReader brError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-        String err;
-        while ((err = brError.readLine()) != null) {
-            System.err.println(err);
-        }
+
         //StreamSucker errorStream = new StreamSucker( p.getErrorStream(), "pandoc error" );
         //errorStream.start();
 
@@ -111,6 +106,13 @@ public class Pandoc {
             OutputStream out = p.getOutputStream();
             IOUtils.write(source, out);
             IOUtils.closeQuietly(out);
+        } else {
+            //读取标准错误流
+            BufferedReader brError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            String err;
+            while ((err = brError.readLine()) != null) {
+                System.err.println(err);
+            }
         }
 
         String result = IOUtils.toString(p.getInputStream());
