@@ -8,11 +8,7 @@ import lombok.NoArgsConstructor;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,14 +86,9 @@ public class Pandoc {
         for (String s : command) {
             System.out.print(s + " ");
         }
+        System.out.println("");
         Process p = Runtime.getRuntime().exec(command);
 
-        ////读取标准输出流
-        //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        //String line;
-        //while ((line = bufferedReader.readLine()) != null) {
-        //    System.out.println(line);
-        //}
 
         //StreamSucker errorStream = new StreamSucker( p.getErrorStream(), "pandoc error" );
         //errorStream.start();
@@ -106,17 +97,13 @@ public class Pandoc {
             OutputStream out = p.getOutputStream();
             IOUtils.write(source, out);
             IOUtils.closeQuietly(out);
-        } else {
-            //读取标准错误流
-            BufferedReader brError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            String err;
-            while ((err = brError.readLine()) != null) {
-                System.err.println(err);
-            }
         }
 
         String result = IOUtils.toString(p.getInputStream());
-
+        String error = IOUtils.toString(p.getErrorStream());
+        if (error != null) {
+            System.out.println(error);
+        }
         try {
             p.waitFor();
         } catch (InterruptedException ie) {
