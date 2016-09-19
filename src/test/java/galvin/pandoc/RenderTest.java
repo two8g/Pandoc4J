@@ -245,7 +245,7 @@ public class RenderTest {
         options.setLatexEngine(new File("/usr/bin/xelatex"));
 
         options.setVariables(values);
-        options.setTemplate(template);
+        //options.setTemplate(template);
         Pandoc pandoc = new Pandoc(new File("/usr/bin/pandoc"));
         try {
             pandoc.render(options, source, output);

@@ -8,7 +8,10 @@ import lombok.NoArgsConstructor;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,13 +98,13 @@ public class Pandoc {
 
         if (fromString) {
             OutputStream out = p.getOutputStream();
-            IOUtils.write(source, out);
+            IOUtils.write(source, out, Charset.forName("UTF-8"));
             IOUtils.closeQuietly(out);
         }
 
         String result = IOUtils.toString(p.getInputStream());
         String error = IOUtils.toString(p.getErrorStream());
-        if (error != null) {
+        if (error != null && !error.isEmpty()) {
             System.out.println(error);
         }
         try {
