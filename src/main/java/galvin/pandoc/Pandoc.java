@@ -105,7 +105,7 @@ public class Pandoc {
         String result = IOUtils.toString(p.getInputStream());
         String error = IOUtils.toString(p.getErrorStream());
         if (error != null && !error.isEmpty()) {
-            System.out.println(error);
+            System.err.println(error);
         }
         try {
             p.waitFor();
